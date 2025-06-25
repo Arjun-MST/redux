@@ -18,6 +18,10 @@ function Home() {
   }, []);
 
   const handleChange = async () => {
+    if (!input.trim()) {
+    toast.error("Please enter a task");
+    return;
+  }
     try {
       const response = await fetch("https://api.freeapi.app/api/v1/todos/", {
         method: "POST",
@@ -34,7 +38,10 @@ function Home() {
       dispatch(addTask(data.data));
       setInput(" ");
       setDescription(" ");
-      toast("Wow so easy!");
+     
+      toast("Wow so easy!", {
+  autoClose: 3000, // or any ms value
+});
     } catch (error) {
       alert(error);
     }
@@ -60,9 +67,11 @@ function Home() {
     );
     const data = await req.json();
 
-
     dispatch(deleteTask(todos._id));
-    toast(data.message);
+    toast(data.message, {
+  autoClose: 3000, // or any ms value
+});
+   
   };
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center p-4">
@@ -77,6 +86,7 @@ function Home() {
               Title
             </label>
             <input
+              required
               onChange={(e) => setInput(e.target.value)}
               value={input}
               type="text"
@@ -92,6 +102,7 @@ function Home() {
             <input
               onChange={(e) => setDescription(e.target.value)}
               value={description}
+              required
               type="text"
               placeholder="Enter task description"
               className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500 focus:outline-none"
@@ -104,12 +115,12 @@ function Home() {
           >
             Add Task
           </button>
-          <ToastContainer />
+        
         </div>
 
         <div className="pt-6 border-t border-gray-200">
           <Task handleTodo={handleTodo} fetchTodo={fetchTodo} />
-          <ToastContainer />
+
         </div>
       </div>
     </div>

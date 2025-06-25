@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTasks } from "../redux/taskSlice";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 function Task({ handleTodo, fetchTodo }) {
@@ -31,15 +30,14 @@ function Task({ handleTodo, fetchTodo }) {
       }
     );
     const data = await Change.json();
-   
     fetchTodo();
-    toast.success("task edited successfully ")
+     toast.success("task edited successfully ", {
+  autoClose: 3000,
+});
     setEditIndex(null);
     } catch (error) {
       toast.error("task didn't edited")
-      
     }
-  
   };
 
   return (
@@ -76,6 +74,7 @@ function Task({ handleTodo, fetchTodo }) {
       <div className="bg-white w-full max-w-xl p-6 rounded-xl shadow-xl relative">
         <h2 className="text-xl font-semibold  text-center">Edit Task</h2>
         <input
+           required
           value={editTitle}
           onChange={(e) => setEditTitle(e.target.value)}
           placeholder="Edit title"
@@ -83,6 +82,7 @@ function Task({ handleTodo, fetchTodo }) {
         />
         <textarea
           value={editDescription}
+             required
           onChange={(e) => setEditDescription(e.target.value)}
           placeholder="Edit description"
           className="w-full mb-4 p-3 border border-gray-300 rounded resize-none"
@@ -106,7 +106,7 @@ function Task({ handleTodo, fetchTodo }) {
     </div>
   )}
 
-  <ToastContainer />
+  <ToastContainer   closeOnClick={true}/>
 </div>
 
   );
