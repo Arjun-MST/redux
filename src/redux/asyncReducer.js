@@ -5,6 +5,6 @@ const options = {method: 'GET', headers: {accept: 'application/json'}};
 export const getAllTasks = createAsyncThunk("getAllTasks", async () => {
    const response = await fetch(url, options);
   const data = await response.json();
-  console.log(data);
+  
   return data;
 });

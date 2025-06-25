@@ -17,16 +17,16 @@ const taskSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllTasks.fulfilled, (state, action) => {
-        console.log(action)
+   
         state.loader = true;
       })
       .addCase(getAllTasks.rejected, (state, action) => {
         state.loader = false;
-          console.log(action)
+      
       })
       .addCase(getAllTasks.pending, (state, action) => {
         state.loader = true;
-          console.log(action)
+        
       });
   },
 });

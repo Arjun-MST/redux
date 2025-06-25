@@ -59,7 +59,7 @@ function Home() {
       { method: "DELETE", headers: { accept: "application/json" } }
     );
     const data = await req.json();
-    console.log(data);
+
 
     dispatch(deleteTask(todos._id));
     toast(data.message);

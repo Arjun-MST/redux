@@ -31,7 +31,7 @@ function Task({ handleTodo, fetchTodo }) {
       }
     );
     const data = await Change.json();
-    console.log(data);
+   
     fetchTodo();
     toast.success("task edited successfully ")
     setEditIndex(null);
