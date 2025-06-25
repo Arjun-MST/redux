@@ -50,7 +50,7 @@ function Task({ handleTodo, fetchTodo }) {
       className="bg-white shadow-md rounded-xl p-4 border-l-4 border-purple-500"
     >
       <p className="text-lg font-semibold text-gray-800 mb-1">
-        <span className="text-purple-600">Title:</span> {task.title}h
+        <span className="text-purple-600">Title:</span> {task.title}
       </p>
       <p className="text-sm text-gray-600 mb-4">
         <span className="text-purple-600">Description:</span> {task.description}
